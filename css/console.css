@@ -1,0 +1,165 @@
+console {
+  display: block;
+  font: 1em/1.25 monospace;
+}
+
+console>lines {
+  display: block;
+}
+
+console line {
+  display: block;
+  position: relative;
+  white-space: pre-line;
+  border-bottom: 1px solid #aaa;
+  padding: 0.25em 0.25em 0.25em 1.5em;
+  min-height: 1em;
+  overflow: auto;
+}
+
+console expander[type="lines-expander"]>label {
+  border-bottom: 1px solid #aaa;
+  font-weight: bold;
+}
+
+console expander[type="lines-expander"]:hover>label {
+  background: #eee;
+  border-radius: 3px;
+}
+
+console expander[type="lines-expander"]>line {
+  display: none;
+  padding-left: 2em;
+}
+
+console expander[type="lines-expander"]>line::before {
+  padding-left: 0.5em;
+}
+
+console expander[type="lines-expander"][open]>line {
+  display: block;
+}
+
+console expander[type="lines-expander"][open]::after {
+  content: "";
+  border-left: 1px solid #777;
+  border-bottom: 1px solid #777;
+  position: absolute;
+  top: 1.5em;
+  left: 1.45em;
+  bottom: 0.7em;
+  width: 0.25em;
+}
+
+console>lines>expander[type="lines-expander"][open]::after {
+  left: 0.45em;
+}
+
+console line::before {
+  position: absolute;
+  top: 0.25em;
+  left: 0;
+  width: 1.5em;
+  height: 1em;
+  text-align: center;
+  display: inline-block;
+  z-index: 1;
+}
+
+console line .ace_text-layer {
+  position: relative;
+  padding: 0 !important;
+}
+
+console line .ace_line {
+  height: auto !important;
+}
+
+console line>expander {
+  display: inline-block;
+  vertical-align: top;
+  white-space: pre;
+}
+
+console line>expander>label {
+  padding-left: 0;
+}
+
+console line>expander[expandable]>label {
+  padding-left: 1em;
+}
+
+console line[type="warn"] {
+  background: #fed;
+  color: #440;
+}
+
+console line[type="warn"]::before {
+  content: "\26A0";
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");
+}
+
+console line[type="info"] {
+  background: #def;
+  color: #00a;
+}
+
+console line[type="info"]::before {
+  content: "\2139";
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");
+}
+
+console line[type="error"] {
+  background: #fdd;
+  color: #f00;
+}
+
+console line[type="error"]::before {
+  content: "\2BBF";
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");
+}
+
+console line[type="input"]::before {
+  content: ">";
+  color: #08f;
+}
+
+console line[type="output"]::before {
+  content: "<";
+  color: #666;
+}
+
+console input-line {
+  display: block;
+  position: relative;
+  border-bottom: 1px solid #aaa;
+}
+
+console .ace_editor {
+  margin: 0;
+}
+
+console input-line .ace_gutter {
+  padding-left: 0.7em;
+}
+
+console input-line .ace_gutter::before {
+  content: ">";
+  color: #08f;
+  font-weight: bold;
+  position: absolute;
+  top: 3.25px;
+  left: 0;
+  width: 1em;
+  text-align: center;
+  display: inline-block;
+  z-index: 1;
+}
+
+console .ace_focus .ace_scroller {
+  box-shadow: inset 0 0 1px 1px #08f;
+}
+
+console .ace_focus .ace_scroller.ace_scroll-left {
+  box-shadow: inset 0 0 1px 1px #08f, 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;
+}

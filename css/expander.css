@@ -1,0 +1,57 @@
+expander {
+  display: block;
+  position: relative;
+  font: 1em/1.25 monospace;
+}
+
+expander[expandable]::before {
+  content: "\25B6";
+  position: absolute;
+  top: 0.25em;
+  left: 0.25em;
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+  font-size: 0.75em;
+  display: block;
+}
+
+expander>expander[expandable]::before {
+  left: 1.5em;
+}
+
+expander>expander {
+  background: none;
+}
+
+expander>label:first-of-type {
+  min-height: 1.25em;
+  display: block;
+}
+
+expander>* {
+  display: none;
+  padding-left: 1em;
+}
+
+expander[type*="placeholder"]>*,
+expander[open]>* {
+  display: block;
+}
+
+expander[open]::before {
+  transform: rotate(90deg);
+}
+
+@media (max-width: 425px) {
+  expander>label {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+  expander>label:hover {
+    background: rgba(128, 128, 128, 0.1);
+    border-radius: 3px;
+  }
+  expander[expandable]::before {
+    top: 0.85em;
+  }
+}

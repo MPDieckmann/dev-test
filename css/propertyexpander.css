@@ -1,0 +1,59 @@
+expander[type*="property"]>label {
+  color: #808;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+expander[type*="property"][enumerable="false"]>label {
+  opacity: 0.75;
+}
+
+expander[type*="property"]>label value[type*="boolean"],
+expander[type*="property"]>label value[type*="number"],
+expander[type*="property"]>label key[type*="number"] {
+  color: #008;
+}
+
+expander[type*="property"]>label value[type*="string"] {
+  color: #800;
+}
+
+expander[type*="property"]>label value[type*="function"] {
+  color: #222;
+  font-style: italic;
+}
+
+expander[type*="property"]>label value[type*="iterable"],
+expander[type*="property"]>label value[type*="placeholder"],
+expander[type*="property"]>label value[type*="object"] {
+  color: #222;
+}
+
+expander[type*="property"]>label value[type*="regexp"],
+expander[type*="property"]>label value[type*="symbol"],
+expander[type*="property"]>label key[type="symbol"] {
+  color: #088;
+}
+
+expander[type*="property"]>label value[type*="null"] {
+  color: #888;
+}
+
+expander[type*="property"]>label key[type*="get"],
+expander[type*="property"]>label key[type*="set"] {
+  font-style: italic;
+}
+
+expander[type*="property"]>label:hover {
+  background: rgba(0, 255, 128, 0.1);
+  border-radius: 3px;
+}
+
+expander[type*="property"][type*="error"]:hover {
+  background: rgba(255, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+expander[type*="property"][type*="error"]>label {
+  color: #f00;
+}

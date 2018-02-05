@@ -1,0 +1,37 @@
+expander[type*="node"]>*:hover {
+  background: rgba(0, 128, 255, 0.1);
+  border-radius: 3px;
+}
+
+expander[type*="node"]>expander:hover {
+  background: none;
+  border-radius: none;
+}
+
+expander[type*="node"]>label {
+  color: #444;
+}
+
+expander[type="element-node"]>label {
+  color: #808;
+}
+
+expander[type*="node"] text {
+  color: #000;
+}
+
+expander[type*="node"] document-type {
+  color: #888;
+}
+
+expander[type*="node"] attr-name {
+  color: #800;
+}
+
+expander[type*="node"] attr-value {
+  color: #008;
+}
+
+expander[type*="node"] comment {
+  color: #080;
+}

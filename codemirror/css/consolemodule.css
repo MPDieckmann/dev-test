@@ -1,0 +1,153 @@
+module[type="console"] {
+  display: block;
+  border: 1px solid #aaa;
+  font: 1em/1.25 monospace;
+}
+
+module[type="console"]>lines {
+  display: block;
+}
+
+module[type="console"] line {
+  display: block;
+  position: relative;
+  white-space: pre-line;
+  border-bottom: 1px solid #aaa;
+  padding: 0.25em 0.25em 0.25em 1.5em;
+  overflow: auto;
+}
+
+module[type="console"] expander[type="lines-expander"]>label {
+  border-bottom: 1px solid #aaa;
+  font-weight: bold;
+}
+
+module[type="console"] expander[type="lines-expander"]:hover>label {
+  background: #eee;
+  border-radius: 3px;
+}
+
+module[type="console"] expander[type="lines-expander"]>line {
+  display: none;
+  padding-left: 2em;
+}
+
+module[type="console"] expander[type="lines-expander"]>line::before {
+  padding-left: 0.5em;
+}
+
+module[type="console"] expander[type="lines-expander"][open]>line {
+  display: block;
+}
+
+module[type="console"] expander[type="lines-expander"][open]::after {
+  content: "";
+  border-left: 1px solid #777;
+  border-bottom: 1px solid #777;
+  position: absolute;
+  top: 1.5em;
+  left: 1.45em;
+  bottom: 0.7em;
+  width: 0.25em;
+}
+
+module[type="console"]>lines>expander[type="lines-expander"][open]::after {
+  left: 0.45em;
+}
+
+module[type="console"] line::before,
+module[type="console"] input-line::before {
+  position: absolute;
+  top: 0.25em;
+  left: 0;
+  width: 1.5em;
+  text-align: center;
+  z-index: 1;
+}
+
+module[type="console"] line>expander {
+  display: inline-block;
+  vertical-align: top;
+  white-space: pre;
+}
+
+module[type="console"] line>expander>label {
+  padding-left: 0;
+}
+
+module[type="console"] line>expander[expandable]>label {
+  padding-left: 1em;
+}
+
+module[type="console"] line[type="warn"] {
+  background: #fed;
+  color: #440;
+}
+
+module[type="console"] line[type="warn"]::before {
+  content: "\26A0";
+}
+
+module[type="console"] line[type="info"] {
+  background: #def;
+  color: #00a;
+}
+
+module[type="console"] line[type="info"]::before {
+  content: "\2139";
+}
+
+module[type="console"] line[type="error"] {
+  background: #fdd;
+  color: #f00;
+}
+
+module[type="console"] line[type="error"]::before {
+  content: "\2BBF";
+}
+
+module[type="console"] line[type="input"] {
+  padding: 0;
+}
+
+module[type="console"] line[type="input"]::before {
+  content: ">";
+  color: #08f;
+}
+
+module[type="console"] line[type="output"]::before {
+  content: "<";
+  color: #666;
+}
+
+module[type="console"] input-line {
+  display: block;
+  position: relative;
+}
+
+module[type="console"] input-line::before {
+  content: ">";
+  color: #08f;
+  font-weight: bold;
+}
+
+module[type="console"] .CodeMirror {
+  height: auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.25em 0.25em 0.25em 1.5em;
+  margin: 0;
+  display: block;
+  border: none;
+  overflow: hidden;
+  font: inherit;
+}
+
+module[type="console"] .CodeMirror-lines {
+  padding: 0;
+}
+
+module[type="console"] .CodeMirror-focused {
+  box-shadow: inset 0 0 1px 1px #08f;
+  outline: none;
+}

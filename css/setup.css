@@ -1,0 +1,48 @@
+html,
+body {
+  display: block;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+iframe {
+  display: block;
+  border: none;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+console {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  border-top: 1px solid #aaa;
+  box-sizing: border-box;
+}
+
+body.vertical iframe {
+  width: 100%;
+  height: 50%;
+}
+
+body.vertical console {
+  width: 100%;
+  height: 50%;
+  border-top: 1px solid #aaa;
+}
+
+body.horizontal iframe {
+  width: 50%;
+  height: 100%;
+}
+
+body.horizontal console {
+  width: 50%;
+  height: 100%;
+  border-left: 1px solid #aaa;
+}
