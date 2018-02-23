@@ -1,9 +1,19 @@
-"use strict";
-import "ace";
-ace.define("theme/devtools", ["require", "exports", "module", "ace/lib/dom", "text!theme/devtools.css"], function (require, exports, module) {
-    exports.isDark = false;
-    exports.cssClass = "theme-devtools";
-    exports.cssText = ".theme-devtools .ace_gutter {\
+(function (factory) {
+    if (typeof module === "object" && typeof module.exports === "object") {
+        var v = factory(require, exports);
+        if (v !== undefined) module.exports = v;
+    }
+    else if (typeof define === "function" && define.amd) {
+        define(["require", "exports", "ace"], factory);
+    }
+})(function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    require("ace");
+    ace.define("theme/devtools", ["require", "exports", "module", "ace/lib/dom", "text!theme/devtools.css"], function (require, exports, module) {
+        exports.isDark = false;
+        exports.cssClass = "theme-devtools";
+        exports.cssText = ".theme-devtools .ace_gutter {\
     background: #eee;\
     color: #444;\
     overflow: hidden;\
@@ -128,7 +138,8 @@ ace.define("theme/devtools", ["require", "exports", "module", "ace/lib/dom", "te
     border-right: 1px solid #ddd;\
     margin-right: -1px;\
   }";
-    var dom = ace.require("ace/lib/dom");
-    dom.importCssString(exports.cssText, exports.cssClass);
+        var dom = ace.require("ace/lib/dom");
+        dom.importCssString(exports.cssText, exports.cssClass);
+    });
 });
 //# sourceMappingURL=devtools.js.map
