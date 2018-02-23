@@ -104,7 +104,7 @@ export class PropertyExpander<T extends PropertyExpander<T>> extends ExtendableE
       if (prop.enumerable == false) {
         expander.element.setAttribute("enumerable", "false");
       }
-      if ("set" in prop) {
+      if ("set" in prop && typeof prop.set == "function") {
         expander.element.setAttribute("editable", "");
       }
       DOMHelper.replaceChild(expander.element, placeholder);
@@ -234,14 +234,14 @@ export class PropertyExpander<T extends PropertyExpander<T>> extends ExtendableE
           if ("value" in prop) {
             this.$createValue(prop);
           }
-          if ("get" in prop) {
+          if ("get" in prop && typeof prop.get == "function") {
             this.$createGet(prop);
           }
           if (prop.owner === this.property) {
-            if ("get" in prop) {
+            if ("get" in prop && typeof prop.get == "function") {
               this.$createGetter(prop);
             }
-            if ("set" in prop) {
+            if ("set" in prop && typeof prop.set == "function") {
               this.$createSetter(prop);
             }
           }

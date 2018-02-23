@@ -1,17 +1,6 @@
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
-    }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./domhelper", "./expander", "css!../css/propertyexpander"], factory);
-    }
-})(function (require, exports) {
+define(["require", "exports", "./domhelper", "./expander", "css!../css/propertyexpander"], function (require, exports, domhelper_1, expander_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const domhelper_1 = require("./domhelper");
-    const expander_1 = require("./expander");
-    require("css!../css/propertyexpander");
     class PropertyExpander extends expander_1.ExtendableExpander {
         constructor(options) {
             super();
@@ -88,7 +77,7 @@
                 if (prop.enumerable == false) {
                     expander.element.setAttribute("enumerable", "false");
                 }
-                if ("set" in prop) {
+                if ("set" in prop && typeof prop.set == "function") {
                     expander.element.setAttribute("editable", "");
                 }
                 domhelper_1.DOMHelper.replaceChild(expander.element, placeholder);
@@ -207,14 +196,14 @@
                         if ("value" in prop) {
                             this.$createValue(prop);
                         }
-                        if ("get" in prop) {
+                        if ("get" in prop && typeof prop.get == "function") {
                             this.$createGet(prop);
                         }
                         if (prop.owner === this.property) {
-                            if ("get" in prop) {
+                            if ("get" in prop && typeof prop.get == "function") {
                                 this.$createGetter(prop);
                             }
-                            if ("set" in prop) {
+                            if ("set" in prop && typeof prop.set == "function") {
                                 this.$createSetter(prop);
                             }
                         }

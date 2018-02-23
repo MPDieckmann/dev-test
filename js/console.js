@@ -1,21 +1,6 @@
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports);
-        if (v !== undefined) module.exports = v;
-    }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "ace", "./theme/devtools", "css!../css/console", "./domhelper", "./expander", "./nodeexpander", "./propertyexpander"], factory);
-    }
-})(function (require, exports) {
+define(["require", "exports", "./domhelper", "./expander", "./nodeexpander", "./propertyexpander", "ace", "./theme/devtools", "css!../css/console"], function (require, exports, domhelper_1, expander_1, nodeexpander_1, propertyexpander_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    require("ace");
-    require("./theme/devtools");
-    require("css!../css/console");
-    const domhelper_1 = require("./domhelper");
-    const expander_1 = require("./expander");
-    const nodeexpander_1 = require("./nodeexpander");
-    const propertyexpander_1 = require("./propertyexpander");
     class Console {
         constructor(global) {
             this.global = global;
