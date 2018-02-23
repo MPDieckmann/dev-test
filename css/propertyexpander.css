@@ -49,11 +49,12 @@ expander[type*="property"]>label:hover {
   border-radius: 3px;
 }
 
-expander[type*="property"][type*="error"]:hover {
+expander[type*="property"][type*="error"] {
   background: rgba(255, 0, 0, 0.1);
   border-radius: 3px;
 }
 
-expander[type*="property"][type*="error"]>label {
+expander[type*="property"][type*="error"]>label key,
+expander[type*="property"][type*="error"]>label value {
   color: #f00;
 }
