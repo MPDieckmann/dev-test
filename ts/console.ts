@@ -6,17 +6,13 @@ import { Expander } from "./expander";
 import { NodeExpander } from "./nodeexpander";
 import { PropertyExpander } from "./propertyexpander";
 
-interface Global extends Window {
-  eval(code: string): any;
-}
-
 export class Console {
   private static _idCounter: number = 0;
   protected static $frames: Console[] = [];
   public static get frames(): ReadonlyArray<Console> {
     return Console.$frames;
   }
-  public static getConsoleProxy(global: Global) {
+  public static getConsoleProxy(global: Console.Global) {
     var frame: Console = this.$frames.filter(frame => {
       return frame.global === global;
     })[0] || new Console(global);
@@ -113,7 +109,7 @@ export class Console {
   public static get activeFrame(): Console {
     return this.$activeFrame;
   }
-  protected static $eval(global: Global, code: string) {
+  protected static $eval(global: Console.Global, code: string) {
     return global.eval.call(null, code);
   }
   protected static $toString(value: any): string {
@@ -216,7 +212,7 @@ export class Console {
   protected static $groups: Element[] = [];
   protected $timer: { [s: string]: number } = {};
 
-  protected constructor(public readonly global: Global) {
+  protected constructor(public readonly global: Console.Global) {
     this.className = "frame-" + Console._idCounter++;
     Console.$frames.push(this);
     Console.$activeFrame = this;
@@ -355,5 +351,10 @@ export class Console {
   }
   public warn(message?: any, ...optionalParams: any[]) {
     this.$createLine(arguments, "warn");
+  }
+}
+export namespace Console {
+  export interface Global extends Window {
+    eval(code: string): any;
   }
 }

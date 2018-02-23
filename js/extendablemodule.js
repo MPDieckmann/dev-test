@@ -1,15 +1,12 @@
-define(["require", "exports", "css!../css/extendablemodule"], function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    class ExtendableModule {
-        constructor(options) {
-            this.element = document.createElement("module");
-            this.header = document.createElement("button");
-            this.element.setAttribute("type", options.type);
-        }
-        onfocus() { }
-        onblur() { }
+"use strict";
+import "css!../css/extendablemodule";
+export class ExtendableModule {
+    constructor(options) {
+        this.element = document.createElement("module");
+        this.header = document.createElement("button");
+        this.element.setAttribute("type", options.type);
     }
-    exports.ExtendableModule = ExtendableModule;
-});
+    onfocus() { }
+    onblur() { }
+}
 //# sourceMappingURL=extendablemodule.js.map
