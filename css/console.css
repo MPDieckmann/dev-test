@@ -1,3 +1,6 @@
+@namespace "https://mpdieckmann.github.io/dev-test";
+@namespace html "http://www.w3.org/1999/xhtml";
+
 console {
   display: block;
   font: 1em/1.25 monospace;
@@ -66,12 +69,12 @@ console line::before {
   z-index: 1;
 }
 
-console line .ace_text-layer {
+console line html|*.ace_text-layer {
   position: relative;
   padding: 0 !important;
 }
 
-console line .ace_line {
+console line html|*.ace_line {
   height: auto !important;
 }
 
@@ -135,15 +138,15 @@ console input-line {
   border-bottom: 1px solid #aaa;
 }
 
-console .ace_editor {
+console html|*.ace_editor {
   margin: 0;
 }
 
-console input-line .ace_gutter {
+console input-line html|*.ace_gutter {
   padding-left: 0.7em;
 }
 
-console input-line .ace_gutter::before {
+console input-line html|*.ace_gutter::before {
   content: ">";
   color: #08f;
   font-weight: bold;
@@ -156,10 +159,10 @@ console input-line .ace_gutter::before {
   z-index: 1;
 }
 
-console .ace_focus .ace_scroller {
+console html|*.ace_focus html|*.ace_scroller {
   box-shadow: inset 0 0 1px 1px #08f;
 }
 
-console .ace_focus .ace_scroller.ace_scroll-left {
+console html|*.ace_focus html|*.ace_scroller.ace_scroll-left {
   box-shadow: inset 0 0 1px 1px #08f, 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;
 }

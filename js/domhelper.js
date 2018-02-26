@@ -1,6 +1,8 @@
 define(["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.namespaceURI = "https://mpdieckmann.github.io/dev-test";
+    exports.htmlNamespaceURI = "http://www.w3.org/1999/xhtml";
     var DOMHelper;
     (function (DOMHelper) {
         function prependChild(newChild, parentNode) {

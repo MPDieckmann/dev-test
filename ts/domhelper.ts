@@ -1,3 +1,7 @@
+export const namespaceURI: namespaceURI = "https://mpdieckmann.github.io/dev-test";
+export type namespaceURI = "https://mpdieckmann.github.io/dev-test";
+export const htmlNamespaceURI: htmlNamespaceURI = "http://www.w3.org/1999/xhtml";
+export type htmlNamespaceURI = "http://www.w3.org/1999/xhtml";
 export namespace DOMHelper {
   export function prependChild<T extends Node = Node>(newChild: T, parentNode: Node): T {
     if (parentNode.firstChild) {

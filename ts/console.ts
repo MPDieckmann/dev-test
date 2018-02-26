@@ -1,7 +1,7 @@
 import "ace";
 import "./theme/devtools";
 import "css!../css/console";
-import { DOMHelper } from "./domhelper";
+import { DOMHelper, namespaceURI, htmlNamespaceURI } from "./domhelper";
 import { Expander } from "./expander";
 import { NodeExpander } from "./nodeexpander";
 import { PropertyExpander } from "./propertyexpander";
@@ -19,12 +19,12 @@ export class Console {
     return frame.proxy;
   }
   public static element: Element = (() => {
-    var consoleElement = document.createElement("console");
-    Console.$lines = document.createElement("lines");
+    var consoleElement = document.createElementNS(namespaceURI, "console");
+    Console.$lines = document.createElementNS(namespaceURI, "lines");
     consoleElement.appendChild(Console.$lines);
     Console.$output = Console.$lines;
-    var inputLine = document.createElement("input-line");
-    var textarea = document.createElement("textarea");
+    var inputLine = document.createElementNS(namespaceURI, "input-line");
+    var textarea = document.createElementNS(htmlNamespaceURI, "textarea");
     inputLine.appendChild(textarea);
     consoleElement.appendChild(inputLine);
 
@@ -54,7 +54,7 @@ export class Console {
         var value = editor.getValue().trim();
         if (value != "") {
           try {
-            var line = document.createElement("line");
+            var line = document.createElementNS(namespaceURI, "line");
             line.setAttribute("type", "input");
             line.classList.add(editor.renderer.theme.cssClass);
             var lines = editor.renderer.canvas.cloneNode(true);
@@ -133,12 +133,12 @@ export class Console {
     }
   }
   protected static $createLine(args: IArguments | any[], type: string, className: string) {
-    var line = document.createElement("line");
+    var line = document.createElementNS(namespaceURI, "line");
     var index = 0;
     var length = args.length;
     if (typeof args[0] == "string") {
       var regexp = /%[sidfoOc]/;
-      var tmp: HTMLElement = line;
+      var tmp: Element = line;
       index++;
       args[0].split(/(%[sidfoOc])/).forEach(str => {
         if (regexp.test(str) && index < length) {
@@ -172,7 +172,7 @@ export class Console {
               }).element);
               break;
             case "%c":
-              let tmp2 = document.createElement("font");
+              let tmp2 = document.createElementNS(namespaceURI, "font");
               tmp2.setAttribute("style", args[index++]);
               tmp.appendChild(tmp2);
               tmp = tmp2;
@@ -304,7 +304,7 @@ export class Console {
     while (line.firstChild) {
       expander.summary.appendChild(line.firstChild);
     }
-    expander.summary.click();
+    expander.expand();
     Console.$groups.push(Console.$output);
     DOMHelper.replaceChild(expander.element, line);
     Console.$output = expander.element;

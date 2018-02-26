@@ -1,4 +1,4 @@
-import { DOMHelper } from "./domhelper";
+import { DOMHelper, namespaceURI } from "./domhelper";
 import { ExtendableExpander } from "./expander";
 import "css!../css/propertyexpander";
 
@@ -43,7 +43,7 @@ export class PropertyExpander<T extends PropertyExpander<T>> extends ExtendableE
     }
     this.summary.innerHTML = '<value type="' + (this.element.getAttribute("type") || "").replace("-property", "") + '">' + this.summary.innerHTML + '</value>';
     // this.summary.addEventListener("dblclick", event => {
-    //   var input = document.createElement("input");
+    //   var input = document.createElementNS(namespaceURI, "input");
     //   switch (this.toType()) {
     //     case "boolean":
     //     case "function":
@@ -85,7 +85,7 @@ export class PropertyExpander<T extends PropertyExpander<T>> extends ExtendableE
     this.element.appendChild(expander.element);
   }
   protected $createGet(prop: PropertyExpander.Descriptor) {
-    var placeholder = document.createElement(this.element.tagName);
+    var placeholder = document.createElementNS(namespaceURI, this.element.tagName);
     placeholder.setAttribute("type", "property-placeholder");
     placeholder.innerHTML = '<label><key type="' + prop.type + '">' + prop.key.toString() + '</key>: <value type="placeholder">(...)</value></label>';
     placeholder.addEventListener("click", () => {

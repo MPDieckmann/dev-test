@@ -1,5 +1,6 @@
 import { ExtendableExpander } from "./expander";
 import "css!../css/nodeexpander";
+import { namespaceURI } from "./domhelper";
 
 export class NodeExpander<N extends Node, T extends NodeExpander<N, T>> extends ExtendableExpander<T> {
   constructor(options: NodeExpander.Options<N>) {
@@ -66,7 +67,7 @@ export class NodeExpander<N extends Node, T extends NodeExpander<N, T>> extends 
       var summaryEnd = "&lt;/" + this.node.localName + "&gt;";
       summaryText = summaryStart + "\u2026" + summaryEnd;
 
-      var lastChild = document.createElement("label");
+      var lastChild = document.createElementNS(namespaceURI, "label");
       lastChild.innerHTML = summaryEnd;
       this.element.appendChild(lastChild);
 
@@ -102,7 +103,7 @@ export class NodeExpander<N extends Node, T extends NodeExpander<N, T>> extends 
   protected $textNode() {
     this.element.setAttribute("type", "text-node");
     if (this.node.nodeValue) {
-      var detailsText = document.createElement("text");
+      var detailsText = document.createElementNS(namespaceURI, "text");
       detailsText.textContent = this.node.nodeValue;
       if (/\n/.test(this.node.nodeValue)) {
         this.summary.textContent = this.node.nodeName;
@@ -117,7 +118,7 @@ export class NodeExpander<N extends Node, T extends NodeExpander<N, T>> extends 
   }
   protected $cdataSectionNode() {
     this.element.setAttribute("type", "cdata-node");
-    var detailsText = document.createElement("cdata");
+    var detailsText = document.createElementNS(namespaceURI, "cdata");
     detailsText.textContent = "<![CDATA[" + this.node.nodeValue + "]]>";
     if (/\n/.test(this.node.nodeValue || "")) {
       this.summary.textContent = this.node.nodeName;
@@ -135,7 +136,7 @@ export class NodeExpander<N extends Node, T extends NodeExpander<N, T>> extends 
   }
   protected $processingInstructionNode() {
     this.element.setAttribute("type", "processing-instruction-node");
-    var detailsText = document.createElement("text");
+    var detailsText = document.createElementNS(namespaceURI, "text");
     detailsText.textContent = "<?" + this.node.nodeName + " " + this.node.nodeValue + "?>";
     if (/\n/.test(this.node.nodeValue || "")) {
       this.summary.textContent = this.node.nodeName;
@@ -147,7 +148,7 @@ export class NodeExpander<N extends Node, T extends NodeExpander<N, T>> extends 
   }
   protected $commentNode() {
     this.element.setAttribute("type", "comment-node");
-    var detailsText = document.createElement("comment");
+    var detailsText = document.createElementNS(namespaceURI, "comment");
     detailsText.textContent = "<!--" + this.node.nodeValue + "-->";
     if (/\n/.test(this.node.nodeValue || "")) {
       this.summary.textContent = this.node.nodeName;
@@ -179,7 +180,7 @@ export class NodeExpander<N extends Node, T extends NodeExpander<N, T>> extends 
   }
   protected $documentTypeNode() {
     this.element.setAttribute("type", "document-type-node");
-    var summaryText = document.createElement("document-type");
+    var summaryText = document.createElementNS(namespaceURI, "document-type");
     summaryText.textContent = "<!DOCTYPE " + this.node.nodeName + ">";
     this.summary.appendChild(summaryText);
   }

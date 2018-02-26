@@ -1,21 +1,16 @@
 import "css!../css/expander";
+import { namespaceURI } from "./domhelper";
 
 export class ExtendableExpander<T extends ExtendableExpander<T>> {
-  public element = document.createElement("expander");
-  public summary = document.createElement("label");
+  public element = document.createElementNS(namespaceURI, "expander");
+  public summary = document.createElementNS(namespaceURI, "label");
+  public get expanded() {
+    return this.$expandable && !this.element.hasAttribute("open");
+  }
   protected constructor(options: ExtendableExpander.Options<T> = {}) {
     this.element.appendChild(this.summary);
     this.summary.addEventListener("click", event => {
-      if (this.$expandable && !this.element.hasAttribute("open")) {
-        this.element.setAttribute("open", "");
-        typeof this.$onexpand == "function" && this.$onexpand.call(this, event);
-        if (this.$wasExpanded == false) {
-          this.$wasExpanded = true;
-        }
-      } else {
-        this.element.removeAttribute("open");
-        typeof this.$oncollapse == "function" && this.$oncollapse.call(this, event);
-      }
+      this.$toggle();
       event.preventDefault();
     });
     this.$onexpand = options.onexpand || null;
@@ -34,17 +29,39 @@ export class ExtendableExpander<T extends ExtendableExpander<T>> {
   protected $wasExpanded: boolean = false;
   protected $onexpand: ExtendableExpander.EventListener<T> | null;
   protected $oncollapse: ExtendableExpander.EventListener<T> | null;
+  protected $expand() {
+    if (this.$expandable) {
+      this.element.setAttribute("open", "");
+      typeof this.$onexpand == "function" && this.$onexpand.call(this);
+      if (this.$wasExpanded == false) {
+        this.$wasExpanded = true;
+      }
+    }
+  }
+  protected $collapse() {
+    this.element.removeAttribute("open");
+    typeof this.$oncollapse == "function" && this.$oncollapse.call(this);
+  }
+  protected $toggle(force: boolean = null) {
+    if (force === false) {
+      this.$collapse();
+    } else if (this.expanded || force === true) {
+      this.$expand();
+    } else {
+      this.$collapse();
+    }
+  }
 }
 declare namespace ExtendableExpander {
   interface Options<T extends ExtendableExpander<T>> {
     onexpand?: EventListener<T>;
     oncollapse?: EventListener<T>;
   }
-  type EventListener<T extends ExtendableExpander<T>> = (this: T, event: Event) => void;
+  type EventListener<T extends ExtendableExpander<T>> = (this: T) => void;
 }
 
 export class Expander<T extends Expander<T>> extends ExtendableExpander<T> {
-  constructor(options: Expander.Options<T>) {
+  public constructor(options: Expander.Options<T>) {
     super(options);
     this.label = options.label;
   }
@@ -77,6 +94,15 @@ export class Expander<T extends Expander<T>> extends ExtendableExpander<T> {
   }
   public set oncollapse(v: ExtendableExpander.EventListener<T> | null) {
     this.$oncollapse = v;
+  }
+  public expand() {
+    this.$expand();
+  }
+  public collapse() {
+    this.$collapse();
+  }
+  public toggle(force: boolean = null) {
+    this.$toggle(force);
   }
 }
 declare namespace Expander {

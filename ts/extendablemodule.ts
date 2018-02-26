@@ -1,8 +1,9 @@
 import "css!../css/extendablemodule";
+import { namespaceURI } from "./domhelper";
 
 export class ExtendableModule {
-  public element = document.createElement("module");
-  public header = document.createElement("button");
+  public element = document.createElementNS(namespaceURI, "module");
+  public header = document.createElementNS(namespaceURI, "button");
   protected constructor(options: ExtendableModule.Options) {
     this.element.setAttribute("type", options.type);
   }

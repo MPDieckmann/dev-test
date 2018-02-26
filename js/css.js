@@ -1,8 +1,8 @@
-define(["require", "exports"], function (require, exports) {
+define(["require", "exports", "./domhelper"], function (require, exports, domhelper_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     function load(name, req, onload, config) {
-        var link = document.createElement("link");
+        var link = document.createElementNS(domhelper_1.htmlNamespaceURI, "link");
         link.href = req.toUrl(name + ".css");
         link.type = "text/css";
         link.rel = "stylesheet";

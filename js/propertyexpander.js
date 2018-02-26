@@ -57,7 +57,7 @@ define(["require", "exports", "./domhelper", "./expander", "css!../css/propertye
             this.element.appendChild(expander.element);
         }
         $createGet(prop) {
-            var placeholder = document.createElement(this.element.tagName);
+            var placeholder = document.createElementNS(domhelper_1.namespaceURI, this.element.tagName);
             placeholder.setAttribute("type", "property-placeholder");
             placeholder.innerHTML = '<label><key type="' + prop.type + '">' + prop.key.toString() + '</key>: <value type="placeholder">(...)</value></label>';
             placeholder.addEventListener("click", () => {

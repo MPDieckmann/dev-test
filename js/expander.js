@@ -1,28 +1,21 @@
-define(["require", "exports", "css!../css/expander"], function (require, exports) {
+define(["require", "exports", "./domhelper", "css!../css/expander"], function (require, exports, domhelper_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     class ExtendableExpander {
         constructor(options = {}) {
-            this.element = document.createElement("expander");
-            this.summary = document.createElement("label");
+            this.element = document.createElementNS(domhelper_1.namespaceURI, "expander");
+            this.summary = document.createElementNS(domhelper_1.namespaceURI, "label");
             this.$wasExpanded = false;
             this.element.appendChild(this.summary);
             this.summary.addEventListener("click", event => {
-                if (this.$expandable && !this.element.hasAttribute("open")) {
-                    this.element.setAttribute("open", "");
-                    typeof this.$onexpand == "function" && this.$onexpand.call(this, event);
-                    if (this.$wasExpanded == false) {
-                        this.$wasExpanded = true;
-                    }
-                }
-                else {
-                    this.element.removeAttribute("open");
-                    typeof this.$oncollapse == "function" && this.$oncollapse.call(this, event);
-                }
+                this.$toggle();
                 event.preventDefault();
             });
             this.$onexpand = options.onexpand || null;
             this.$oncollapse = options.oncollapse || null;
+        }
+        get expanded() {
+            return this.$expandable && !this.element.hasAttribute("open");
         }
         get $expandable() {
             return this.element.hasAttribute("expandable");
@@ -33,6 +26,30 @@ define(["require", "exports", "css!../css/expander"], function (require, exports
             }
             else {
                 this.element.removeAttribute("expandable");
+            }
+        }
+        $expand() {
+            if (this.$expandable) {
+                this.element.setAttribute("open", "");
+                typeof this.$onexpand == "function" && this.$onexpand.call(this);
+                if (this.$wasExpanded == false) {
+                    this.$wasExpanded = true;
+                }
+            }
+        }
+        $collapse() {
+            this.element.removeAttribute("open");
+            typeof this.$oncollapse == "function" && this.$oncollapse.call(this);
+        }
+        $toggle(force = null) {
+            if (force === false) {
+                this.$collapse();
+            }
+            else if (this.expanded || force === true) {
+                this.$expand();
+            }
+            else {
+                this.$collapse();
             }
         }
     }
@@ -71,6 +88,15 @@ define(["require", "exports", "css!../css/expander"], function (require, exports
         }
         set oncollapse(v) {
             this.$oncollapse = v;
+        }
+        expand() {
+            this.$expand();
+        }
+        collapse() {
+            this.$collapse();
+        }
+        toggle(force = null) {
+            this.$toggle(force);
         }
     }
     exports.Expander = Expander;

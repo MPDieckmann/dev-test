@@ -1,5 +1,9 @@
-html,
-body {
+@namespace "https://mpdieckmann.github.io/dev-test";
+@namespace dev-test "https://mpdieckmann.github.io/dev-test";
+@namespace html "http://www.w3.org/1999/xhtml";
+
+html|html,
+html|body {
   display: block;
   padding: 0;
   margin: 0;
@@ -8,7 +12,7 @@ body {
   box-sizing: border-box;
 }
 
-iframe {
+html|iframe {
   display: block;
   border: none;
   width: 100%;
@@ -25,23 +29,24 @@ console {
   box-sizing: border-box;
 }
 
-body.vertical iframe {
+html|body[dev-test|layout="vertical"] html|iframe {
   width: 100%;
   height: 50%;
 }
 
-body.vertical console {
+html|body[dev-test|layout="vertical"] console {
   width: 100%;
   height: 50%;
   border-top: 1px solid #aaa;
 }
 
-body.horizontal iframe {
+html|body[dev-test|layout="horizontal"] html|iframe {
   width: 50%;
   height: 100%;
+  float: left;
 }
 
-body.horizontal console {
+html|body[dev-test|layout="horizontal"] console {
   width: 50%;
   height: 100%;
   border-left: 1px solid #aaa;

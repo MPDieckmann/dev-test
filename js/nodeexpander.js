@@ -1,4 +1,4 @@
-define(["require", "exports", "./expander", "css!../css/nodeexpander"], function (require, exports, expander_1) {
+define(["require", "exports", "./expander", "./domhelper", "css!../css/nodeexpander"], function (require, exports, expander_1, domhelper_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     class NodeExpander extends expander_1.ExtendableExpander {
@@ -64,7 +64,7 @@ define(["require", "exports", "./expander", "css!../css/nodeexpander"], function
                 summaryStart += "&gt;";
                 var summaryEnd = "&lt;/" + this.node.localName + "&gt;";
                 summaryText = summaryStart + "\u2026" + summaryEnd;
-                var lastChild = document.createElement("label");
+                var lastChild = document.createElementNS(domhelper_1.namespaceURI, "label");
                 lastChild.innerHTML = summaryEnd;
                 this.element.appendChild(lastChild);
                 this.$oncollapse = () => {
@@ -99,7 +99,7 @@ define(["require", "exports", "./expander", "css!../css/nodeexpander"], function
         $textNode() {
             this.element.setAttribute("type", "text-node");
             if (this.node.nodeValue) {
-                var detailsText = document.createElement("text");
+                var detailsText = document.createElementNS(domhelper_1.namespaceURI, "text");
                 detailsText.textContent = this.node.nodeValue;
                 if (/\n/.test(this.node.nodeValue)) {
                     this.summary.textContent = this.node.nodeName;
@@ -116,7 +116,7 @@ define(["require", "exports", "./expander", "css!../css/nodeexpander"], function
         }
         $cdataSectionNode() {
             this.element.setAttribute("type", "cdata-node");
-            var detailsText = document.createElement("cdata");
+            var detailsText = document.createElementNS(domhelper_1.namespaceURI, "cdata");
             detailsText.textContent = "<![CDATA[" + this.node.nodeValue + "]]>";
             if (/\n/.test(this.node.nodeValue || "")) {
                 this.summary.textContent = this.node.nodeName;
@@ -135,7 +135,7 @@ define(["require", "exports", "./expander", "css!../css/nodeexpander"], function
         }
         $processingInstructionNode() {
             this.element.setAttribute("type", "processing-instruction-node");
-            var detailsText = document.createElement("text");
+            var detailsText = document.createElementNS(domhelper_1.namespaceURI, "text");
             detailsText.textContent = "<?" + this.node.nodeName + " " + this.node.nodeValue + "?>";
             if (/\n/.test(this.node.nodeValue || "")) {
                 this.summary.textContent = this.node.nodeName;
@@ -148,7 +148,7 @@ define(["require", "exports", "./expander", "css!../css/nodeexpander"], function
         }
         $commentNode() {
             this.element.setAttribute("type", "comment-node");
-            var detailsText = document.createElement("comment");
+            var detailsText = document.createElementNS(domhelper_1.namespaceURI, "comment");
             detailsText.textContent = "<!--" + this.node.nodeValue + "-->";
             if (/\n/.test(this.node.nodeValue || "")) {
                 this.summary.textContent = this.node.nodeName;
@@ -181,7 +181,7 @@ define(["require", "exports", "./expander", "css!../css/nodeexpander"], function
         }
         $documentTypeNode() {
             this.element.setAttribute("type", "document-type-node");
-            var summaryText = document.createElement("document-type");
+            var summaryText = document.createElementNS(domhelper_1.namespaceURI, "document-type");
             summaryText.textContent = "<!DOCTYPE " + this.node.nodeName + ">";
             this.summary.appendChild(summaryText);
         }

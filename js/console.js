@@ -88,7 +88,7 @@ define(["require", "exports", "./domhelper", "./expander", "./nodeexpander", "./
             }
         }
         static $createLine(args, type, className) {
-            var line = document.createElement("line");
+            var line = document.createElementNS(domhelper_1.namespaceURI, "line");
             var index = 0;
             var length = args.length;
             if (typeof args[0] == "string") {
@@ -127,7 +127,7 @@ define(["require", "exports", "./domhelper", "./expander", "./nodeexpander", "./
                                 }).element);
                                 break;
                             case "%c":
-                                let tmp2 = document.createElement("font");
+                                let tmp2 = document.createElementNS(domhelper_1.namespaceURI, "font");
                                 tmp2.setAttribute("style", args[index++]);
                                 tmp.appendChild(tmp2);
                                 tmp = tmp2;
@@ -217,7 +217,7 @@ define(["require", "exports", "./domhelper", "./expander", "./nodeexpander", "./
             while (line.firstChild) {
                 expander.summary.appendChild(line.firstChild);
             }
-            expander.summary.click();
+            expander.expand();
             Console.$groups.push(Console.$output);
             domhelper_1.DOMHelper.replaceChild(expander.element, line);
             Console.$output = expander.element;
@@ -269,12 +269,12 @@ define(["require", "exports", "./domhelper", "./expander", "./nodeexpander", "./
     Console._idCounter = 0;
     Console.$frames = [];
     Console.element = (() => {
-        var consoleElement = document.createElement("console");
-        Console.$lines = document.createElement("lines");
+        var consoleElement = document.createElementNS(domhelper_1.namespaceURI, "console");
+        Console.$lines = document.createElementNS(domhelper_1.namespaceURI, "lines");
         consoleElement.appendChild(Console.$lines);
         Console.$output = Console.$lines;
-        var inputLine = document.createElement("input-line");
-        var textarea = document.createElement("textarea");
+        var inputLine = document.createElementNS(domhelper_1.namespaceURI, "input-line");
+        var textarea = document.createElementNS(domhelper_1.htmlNamespaceURI, "textarea");
         inputLine.appendChild(textarea);
         consoleElement.appendChild(inputLine);
         var $editor = ace.edit(textarea);
@@ -303,7 +303,7 @@ define(["require", "exports", "./domhelper", "./expander", "./nodeexpander", "./
                     var value = editor.getValue().trim();
                     if (value != "") {
                         try {
-                            var line = document.createElement("line");
+                            var line = document.createElementNS(domhelper_1.namespaceURI, "line");
                             line.setAttribute("type", "input");
                             line.classList.add(editor.renderer.theme.cssClass);
                             var lines = editor.renderer.canvas.cloneNode(true);
