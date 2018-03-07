@@ -56,6 +56,9 @@ define(["require", "exports", "./domhelper", "./expander", "./nodeexpander", "./
                     Console.$frames.splice(Console.$frames.indexOf(this), 1);
                 }
             });
+            // @ts-ignore
+            global.console = this;
+            global[domhelper_1.namespaceURI + "/console"] = this;
         }
         static get frames() {
             return Console.$frames;

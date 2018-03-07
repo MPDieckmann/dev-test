@@ -232,6 +232,9 @@ export class Console {
         Console.$frames.splice(Console.$frames.indexOf(this), 1);
       }
     });
+    // @ts-ignore
+    global.console = this;
+    global[namespaceURI + "/console"] = this;
   }
   protected $functions: PropertyKey[] = [
     "assert",

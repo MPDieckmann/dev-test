@@ -1,6 +1,6 @@
 {
   "name": "devtools",
-  "version": "2018.03.07",
+  "version": "2018.03.08",
   "dependencies": {
     "@types/ace": "0.0.36",
     "@types/requirejs": "^2.1.31"
