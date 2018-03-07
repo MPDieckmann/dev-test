@@ -6,5 +6,7 @@ requirejs.config({
     paths: {
         "ace": "https://ajaxorg.github.io/ace-builds/src-noconflict/ace"
     }
-})(["ace","ace/mode-javascript","./setup"]);
+})(["require", "ace"], function (r) {
+  r(["ace/mode-javascript","./setup"]);
+});
 //# sourceMappingURL=config.js.map
