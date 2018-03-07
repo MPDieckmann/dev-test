@@ -1,4 +1,7 @@
 # dev-test
+
+This Project is licensed under the [GNU General Public License v3.0](LICENSE)
+
 Rich JS-Console for every page that allows loading scripts from <https://mpdieckmann.github.io/>.
 
 Click here to see a demo with a blank page [demo.html](https://mpdieckmann.github.io/dev-test/demo.html) or view the code [here](https://github.com/MPDieckmann/dev-test/blob/master/demo.html).
