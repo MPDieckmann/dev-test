@@ -42,6 +42,33 @@ define(["require", "exports", "./domhelper", "./expander", "css!../css/propertye
                 this.$object(this.property);
             }
             this.summary.innerHTML = '<value type="' + (this.element.getAttribute("type") || "").replace("-property", "") + '">' + this.summary.innerHTML + '</value>';
+            // this.summary.addEventListener("dblclick", event => {
+            //   var input = document.createElementNS(namespaceURI, "input");
+            //   switch (this.toType()) {
+            //     case "boolean":
+            //     case "function":
+            //     case "number":
+            //     case "regexp":
+            //     case "symbol":
+            //       input.value = this.property.toString();
+            //       break;
+            //     case "string":
+            //       input.value = '"' + this.property + '"';
+            //       break;
+            //     case "iterable":
+            //       input.value = JSON.stringify(this.property);
+            //       break;
+            //     case "null":
+            //       input.value = String(this.property);
+            //       break;
+            //   }
+            //   input.addEventListener("keydown", event=>{
+            //     if (event.keyCode == 13) {
+            //       DOMHelper.replaceChild(this.summary, input);
+            //     }
+            //   });
+            //   DOMHelper.replaceChild(input, this.summary);
+            // });
         }
         $createValue(prop) {
             var expander = new PropertyExpander({

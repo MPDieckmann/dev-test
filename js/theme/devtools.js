@@ -1,6 +1,7 @@
 define(["require", "exports", "ace"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    // import "css!../../ts/theme/devtools";
     ace.define("theme/devtools", ["require", "exports", "module", "ace/lib/dom", "text!theme/devtools.css"], function (require, exports, module) {
         exports.isDark = false;
         exports.cssClass = "theme-devtools";

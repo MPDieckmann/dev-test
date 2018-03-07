@@ -216,6 +216,16 @@ export class Console {
     this.className = "frame-" + Console._idCounter++;
     Console.$frames.push(this);
     Console.$activeFrame = this;
+    global.addEventListener("error", event => {
+      this.$createLine(["Uncaught:", {
+        colno: event.colno,
+        error: event.error,
+        filename: event.filename,
+        lineno: event.lineno,
+        message: event.message,
+        [Symbol.toStringTag]: event.message || "Error"
+      }], "error");
+    });
     global.addEventListener("unload", event => {
       if (event.isTrusted) {
         Console.$frames.splice(Console.$frames.indexOf(this), 1);
