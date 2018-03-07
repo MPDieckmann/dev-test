@@ -223,6 +223,7 @@ export class Console {
         filename: event.filename,
         lineno: event.lineno,
         message: event.message,
+        event: event,
         [Symbol.toStringTag]: event.message || "Error"
       }], "error");
     });

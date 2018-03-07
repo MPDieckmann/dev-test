@@ -1,1 +1,1 @@
-{"version":3,"file":"setup.noframe.js","sourceRoot":"","sources":["../ts/setup.noframe.ts"],"names":[],"mappings":";;;IACA,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,iBAAO,CAAC,OAAO,CAAC,CAAC;IAC3C,aAAa;IACb,MAAM,CAAC,OAAO,GAAG,iBAAO,CAAC,eAAe,CAAiB,MAAM,CAAC,CAAC"}
+{"version":3,"file":"setup.noframe.js","sourceRoot":"","sources":["../ts/setup.noframe.ts"],"names":[],"mappings":";;;IACA,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,iBAAO,CAAC,OAAO,CAAC,CAAC;IAC3C,aAAa;IACb,IAAI,CAAC,OAAO,GAAG,IAAI,CAAC,gCAAgC,CAAC,CAAC,OAAO,GAAG,iBAAO,CAAC,eAAe,CAAiB,IAAI,CAAC,CAAC"}

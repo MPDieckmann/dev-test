@@ -1,4 +1,4 @@
 import { Console } from "./console";
 document.body.appendChild(Console.element);
 // @ts-ignore
-window.console = Console.getConsoleProxy(<Console.Global>window);
+self.console = self["mpdieckmann.github.io/dev-test"].console = Console.getConsoleProxy(<Console.Global>self);

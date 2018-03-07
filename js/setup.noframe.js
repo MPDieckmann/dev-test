@@ -3,6 +3,6 @@ define(["require", "exports", "./console"], function (require, exports, console_
     Object.defineProperty(exports, "__esModule", { value: true });
     document.body.appendChild(console_1.Console.element);
     // @ts-ignore
-    window.console = console_1.Console.getConsoleProxy(window);
+    self.console = self["mpdieckmann.github.io/dev-test"].console = console_1.Console.getConsoleProxy(self);
 });
 //# sourceMappingURL=setup.noframe.js.map

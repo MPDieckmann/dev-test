@@ -47,6 +47,7 @@ define(["require", "exports", "./domhelper", "./expander", "./nodeexpander", "./
                         filename: event.filename,
                         lineno: event.lineno,
                         message: event.message,
+                        event: event,
                         [Symbol.toStringTag]: event.message || "Error"
                     }], "error");
             });
