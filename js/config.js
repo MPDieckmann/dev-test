@@ -7,6 +7,6 @@ requirejs.config({
         "ace": "https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.1/"
     }
 })(["require", "ace/ace"], function (r) {
-  r(["ace/mode-javascript","./setup"]);
+  r(["./setup"]);
 });
 //# sourceMappingURL=config.js.map
