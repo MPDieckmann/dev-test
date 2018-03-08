@@ -1,4 +1,4 @@
-define(["require", "exports", "./domhelper", "./expander", "./nodeexpander", "./propertyexpander", "ace", "./theme/devtools", "css!../css/console"], function (require, exports, domhelper_1, expander_1, nodeexpander_1, propertyexpander_1) {
+define(["require", "exports", "./domhelper", "./expander", "./nodeexpander", "./propertyexpander", "ace/ace", "./theme/devtools", "css!../css/console"], function (require, exports, domhelper_1, expander_1, nodeexpander_1, propertyexpander_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     class Console {
