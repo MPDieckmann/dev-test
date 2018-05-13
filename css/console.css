@@ -24,6 +24,10 @@ console expander[type="lines-expander"] {
   display: block;
 }
 
+console expander[type="lines-expander"] expander {
+  display: none;
+}
+
 console expander[type="lines-expander"]>label {
   border-bottom: 1px solid #aaa;
   font-weight: bold;
