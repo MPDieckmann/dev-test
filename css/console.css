@@ -78,10 +78,14 @@ console line html|*.ace_line {
   height: auto !important;
 }
 
-console line>expander {
+console line expander {
   display: inline-block;
   vertical-align: top;
   white-space: pre;
+}
+
+console line expander>expander {
+  display: none;
 }
 
 console line>expander>label {
