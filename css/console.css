@@ -33,10 +33,14 @@ console expander[type="lines-expander"]::before {
   top: 0.6em;
 }
 
+console expander[type="lines-expander"]>expander[type="lines-expander"]>label {
+  padding-left: 1em;
+}
+
 console expander[type="lines-expander"]>label {
   border-bottom: 1px solid #aaa;
   font-weight: bold;
-  padding: 0.25em 0.25em 0.25em 1em;
+  padding: 0.25em 0.25em 0.25em 1.5em;
 }
 
 console expander[type="lines-expander"]:hover>label {
