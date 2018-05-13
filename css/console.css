@@ -20,17 +20,23 @@ console line {
   overflow: auto;
 }
 
-console expander[type="lines-expander"] {
+console expander[type="lines-expander"],
+console expander[type="lines-expander"][open]>expander[type="lines-expander"] {
   display: block;
 }
 
-console expander[type="lines-expander"] expander {
+console expander[type="lines-expander"]>expander[type="lines-expander"] {
   display: none;
+}
+
+console expander[type="lines-expander"]::before {
+  top: 0.6em;
 }
 
 console expander[type="lines-expander"]>label {
   border-bottom: 1px solid #aaa;
   font-weight: bold;
+  padding: 0.25em 0.25em 0.25em 1em;
 }
 
 console expander[type="lines-expander"]:hover>label {
